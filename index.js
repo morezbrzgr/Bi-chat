@@ -52,7 +52,7 @@ def start(update: Update, context: CallbackContext) -> None:
     update.message.reply_text('سلام! من ربات شما هستم.')
 
 def main():
-    # توکن ربات خود را قرار دهید
+    # 7835116613:AAEuZ5mwjpNrozXR75Jjjy4wNhEiwJcprDA
     updater = Updater("YOUR_BOT_TOKEN")
     dispatcher = updater.dispatcher
     dispatcher.add_handler(CommandHandler("start", start))
