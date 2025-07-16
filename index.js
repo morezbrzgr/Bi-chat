@@ -44,6 +44,28 @@ bot.on('text', (ctx) => {
   if (!other) return ctx.reply('برای شروع چت، /start بزن.');
   bot.telegram.sendMessage(other, ctx.message.text);
 });
+import os
+from telegram import Update
+from telegram.ext import Updater, CommandHandler, CallbackContext
+
+def start(update: Update, context: CallbackContext) -> None:
+    update.message.reply_text('سلام! من ربات شما هستم.')
+
+def main():
+    # توکن ربات خود را قرار دهید
+    updater = Updater("YOUR_BOT_TOKEN")
+    dispatcher = updater.dispatcher
+    dispatcher.add_handler(CommandHandler("start", start))
+
+    # دریافت پورت از متغیر محیطی
+    port = os.environ.get('PORT', 5000)  # اگر پورت مشخص نشد، 5000 به طور پیشفرض استفاده می‌شود
+    updater.start_polling()
+
+    # متوقف کردن ربات و استفاده از پورت مشخص شده
+    updater.idle()
+
+if __name__ == '__main__':
+    main()
 
 bot.launch().then(() => console.log('Bot started...')).catch((err) => {
   console.error('Launch error:', err);
